@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+/* Dark mode dikontrol manual lewat class ".dark" di <html>, bukan cuma
+   ngikutin preferensi OS - supaya ada tombol toggle yang bisa dipencet user. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  body {
+    @apply bg-[#E2E6EC] text-slate-800 font-sans antialiased selection:bg-blue-500/30 transition-colors duration-300;
+  }
+  .dark body {
+    @apply bg-[#0B0F17] text-slate-200;
+  }
+}
+
+/* Custom Scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}
+
+
