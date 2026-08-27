@@ -127,6 +127,9 @@ export function LoginScreen({ onLogin }: { onLogin: (user: SessionUser, access: 
                 placeholder="Password akun kamu"
                 className="w-full bg-[#131B2A] border border-white/10 text-white rounded-xl px-4 py-3.5 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-slate-600 text-sm"
               />
+              <p className="mt-2 text-[11px] text-slate-500 leading-relaxed">
+                Baru pertama kali login? Password default-nya <span className="text-slate-300 font-medium">123456</span> — segera ganti setelah masuk.
+              </p>
             </div>
 
             {error && (
