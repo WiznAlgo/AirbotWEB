@@ -13,7 +13,6 @@ type RunState = 'idle' | 'running' | 'done';
 
 export function Console({ bot }: { bot: BotKey }) {
   const [input, setInput] = useState('');
-  const [deliver, setDeliver] = useState(false);
   const [logs, setLogs] = useState<LogEntryType[]>([]);
   const [runState, setRunState] = useState<RunState>('idle');
   const [rawOpenId, setRawOpenId] = useState<string | null>(null);
@@ -79,10 +78,10 @@ export function Console({ bot }: { bot: BotKey }) {
 
     setRunState('running');
     try {
-      const res = await api(`/api/bots/${bot}/console`, { method: 'POST', body: { text: cmd, deliver } });
+      const res = await api(`/api/bots/${bot}/console`, { method: 'POST', body: { text: cmd } });
       const newLog: LogEntryType = {
         id: Date.now().toString(),
-        cmdText: cmd + (deliver ? ' (Delivered)' : ''),
+        cmdText: cmd,
         isError: !res?.ok,
         outputText: res?.response ?? res,
         time: new Date().toLocaleTimeString(),
@@ -232,17 +231,6 @@ export function Console({ bot }: { bot: BotKey }) {
               />
             </div>
             <div className="flex items-center gap-4 w-full md:w-auto">
-              {!whatsappOff && (
-                <label className="flex items-center gap-2 text-[12px] font-bold text-slate-500 dark:text-slate-400 cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={deliver}
-                    onChange={(e) => setDeliver(e.target.checked)}
-                    className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500/50"
-                  />
-                  Kirim ke WA saya
-                </label>
-              )}
               <button
                 type="submit"
                 disabled={runState !== 'idle' || !input.trim() || whatsappOff}
