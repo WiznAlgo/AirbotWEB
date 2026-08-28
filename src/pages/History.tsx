@@ -115,7 +115,7 @@ export function History({ bot }: { bot: BotKey }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Cari nama atau tanggal..."
+            placeholder="Cari nama atau tanggal (mis. 27/8/2026)..."
             className="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-100 rounded-xl pl-11 pr-4 py-3 text-[13px] outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-slate-400"
           />
         </div>
